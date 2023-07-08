@@ -10,9 +10,4 @@
         <ext:createCollection collectionName="pets"/>
     </changeSet>
 
-<!--    <changeSet id="2" author="echirilovici" labels="all,1.0" failOnError="false">-->
-<!--        <comment>Create 'categories' collection that stores 'categories' documents.</comment>-->
-<!--        <ext:createCollection collectionName="categories"/>-->
-<!--    </changeSet>-->
-
 </databaseChangeLog>
