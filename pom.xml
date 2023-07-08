@@ -17,12 +17,14 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>service</module>
+        <module>self-improvement-service</module>
+        <module>self-improvement-db</module>
     </modules>
 
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
+        <liquibase-maven-plugin.version>4.18.0</liquibase-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -111,6 +113,28 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>${liquibase-maven-plugin.version}</version>
+                    <configuration>
+                        <propertyFileWillOverride>false</propertyFileWillOverride>
+                        <propertyFile>liquibase.properties</propertyFile>
+                        <dropFirst>false</dropFirst>
+                        <skip>true</skip>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.liquibase.ext</groupId>
+                            <artifactId>liquibase-mongodb</artifactId>
+                            <version>${liquibase-maven-plugin.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -126,5 +150,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

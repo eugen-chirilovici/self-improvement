@@ -1,4 +1,4 @@
-package com.echirilovici.selfimprovement;
+package com.selfimprovement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

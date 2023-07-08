@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="echirilovici" labels="all,1.0" failOnError="false">
+        <comment>Create 'pets' collection that stores 'pets' documents.</comment>
+        <ext:createCollection collectionName="pets"/>
+    </changeSet>
+
+<!--    <changeSet id="2" author="echirilovici" labels="all,1.0" failOnError="false">-->
+<!--        <comment>Create 'categories' collection that stores 'categories' documents.</comment>-->
+<!--        <ext:createCollection collectionName="categories"/>-->
+<!--    </changeSet>-->
+
+</databaseChangeLog>
