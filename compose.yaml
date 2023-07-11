@@ -28,10 +28,10 @@ services:
     ports:
       - "8888:8081"
 
-#  rabbitmq:
-#    image: 'rabbitmq:latest'
-#    environment:
-#      - 'RABBITMQ_DEFAULT_PASS=secret'
-#      - 'RABBITMQ_DEFAULT_USER=myuser'
-#    ports:
-#      - '5672'
+  rabbitmq:
+    image: 'rabbitmq:latest'
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=secret'
+      - 'RABBITMQ_DEFAULT_USER=myuser'
+    ports:
+      - '5672'

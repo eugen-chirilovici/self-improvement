@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      maxIdleTimeMin: ${MONGO_MAX_IDLE_TIME_MIN:15}
+      maxSize: ${MONGO_MAX_SIZE:100}
+      minSize: ${MONGO_MIN_SIZE:10}
+      username: self_user
+      password: self_pwd
+      database: self-db
