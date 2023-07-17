@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.RabbitMQContainer;
 
 @TestConfiguration(proxyBeanMethods = false)
+@ActiveProfiles("test")
 public class TestSelfImprovementApplication {
 
 	@Bean
@@ -23,7 +25,10 @@ public class TestSelfImprovementApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.from(SelfImprovementApplication::main).with(TestSelfImprovementApplication.class).run(args);
+		SpringApplication
+				.from(SelfImprovementApplication::main)
+				.with(TestSelfImprovementApplication.class)
+				.run(args);
 	}
 
 }
