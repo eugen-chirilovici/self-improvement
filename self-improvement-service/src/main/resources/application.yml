@@ -7,3 +7,4 @@ spring:
       username: self_user
       password: self_pwd
       database: self-db
+      host: mongo-db

@@ -3,6 +3,7 @@ package com.selfimprovement.app.config;
 
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.connection.ConnectionPoolSettings;
 import com.selfimprovement.app.repository.listener.UuidIdentifiedEntityEventListener;
 import org.bson.UuidRepresentation;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.selfimprovement.app.config.converter.MongoDBCustomConverters.getMongoDbCustomConverters;
@@ -37,6 +39,9 @@ public class MongoConfig {
     @Value("${spring.data.mongodb.database}")
     private String database;
 
+    @Value("${spring.data.mongodb.host}")
+    private String host;
+
     /**
      * List of custom conversions used for Mongodb.
      */
@@ -60,7 +65,8 @@ public class MongoConfig {
                         .minSize(minSize)
                         .maxConnectionIdleTime(maxIdleTimeMin, TimeUnit.MINUTES))
                 .uuidRepresentation(UuidRepresentation.STANDARD)
-                .credential(MongoCredential.createCredential(username, database, password.toCharArray()))
+                .credential(MongoCredential.createScramSha1Credential(username, database, password.toCharArray()))
+                .applyToClusterSettings(builder -> builder.hosts(List.of(new ServerAddress(host))))
                 .build();
     }
 }
