@@ -12,7 +12,7 @@ mongosh admin -u root -p 'secret' (same u & p as in compose.yaml spec)
 
 create user and attach it to self-db, which is used by liquibase config
 
-```
+```mongodb-json
 self_db = db.getSiblingDB("self-db");
 self_db.createUser({
     user: "self_user",
@@ -24,4 +24,8 @@ self_db.createUser({
       }
     ]
 });
+```
+
+```shell
+mvn liquibase:update
 ```
