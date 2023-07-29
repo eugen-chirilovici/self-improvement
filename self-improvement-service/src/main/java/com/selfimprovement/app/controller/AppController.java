@@ -1,6 +1,7 @@
 package com.selfimprovement.app.controller;
 
 import com.selfimprovement.app.model.PetDto;
+import com.selfimprovement.app.model.convertor.PetMapper;
 import com.selfimprovement.app.repository.PetRepository;
 import com.selfimprovement.model.PetEntity;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/*
+useful info:
+    1. https://nurkiewicz.com/2021/08/json-streaming-in-webflux.html
+ */
 @RestController
 @RequiredArgsConstructor
 public class AppController {
@@ -33,8 +38,10 @@ public class AppController {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/pet", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<PetEntity> getPets() {
-        return petRepository.findAll();
+//    @GetMapping(value = "/pet", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/pet", produces = MediaType.APPLICATION_NDJSON_VALUE)
+    public Flux<PetDto> getPets() {
+        return petRepository.findAll()
+                .map(PetMapper::mapToPetDto);
     }
 }
