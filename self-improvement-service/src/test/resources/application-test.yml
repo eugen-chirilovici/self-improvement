@@ -8,3 +8,4 @@ spring:
       password: self_pwd
       database: self-db
       host: mongo-db
+#      host: localhost

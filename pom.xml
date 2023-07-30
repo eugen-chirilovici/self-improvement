@@ -27,6 +27,7 @@
         <liquibase-maven-plugin.version>4.18.0</liquibase-maven-plugin.version>
         <liquibase-maven-driver.version>4.9.0</liquibase-maven-driver.version>
         <docker-maven-plugin.version>0.41.0</docker-maven-plugin.version>
+        <surefire-maven-plugin.version>3.1.2</surefire-maven-plugin.version>
         <docker.wait.http.url>http://localhost:8080/actuator/health/ping</docker.wait.http.url>
         <docker.wait.time>90000</docker.wait.time>
     </properties>
@@ -63,11 +64,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-docker-compose</artifactId>
             <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
@@ -188,6 +184,42 @@
                             </image>
                         </images>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${surefire-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>integration-tests</id>
+                            <phase>integration-test</phase>
+                            <goals>
+                                <goal>integration-test</goal>
+                            </goals>
+                            <configuration>
+                                <includes>
+                                    <include>**/*IT.*</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefire-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>unit-tests</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <includes>
+                                    <include>**/*Test.java</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>

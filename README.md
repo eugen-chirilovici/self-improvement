@@ -14,3 +14,9 @@ docker build -t self-improvement-app-image .
 cd ../
 docker-compose up
 ```
+
+Maven wrapper plugin config:
+
+```bash
+mvn -N wrapper:wrapper -Dmaven=3.9.3
+```
