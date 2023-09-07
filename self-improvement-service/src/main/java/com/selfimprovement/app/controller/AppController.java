@@ -1,8 +1,7 @@
 package com.selfimprovement.app.controller;
 
-import com.selfimprovement.app.model.PetDto;
-import com.selfimprovement.app.model.convertor.PetMapper;
-import com.selfimprovement.app.repository.PetRepository;
+import com.selfimprovement.app.dto.PetDto;
+import com.selfimprovement.app.service.PetService;
 import com.selfimprovement.model.PetEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ useful info:
 @RequiredArgsConstructor
 public class AppController {
 
-    private final PetRepository petRepository;
+    private final PetService petService;
 
     @PostMapping(value = "/pet")
     public ResponseEntity<HttpStatus> postPet(@RequestBody PetDto petDto) {
@@ -32,16 +31,15 @@ public class AppController {
                 .build();
 
         Mono.just(petEntity)
-                .flatMap(petRepository::save)
+                .flatMap(petService::save)
                 .subscribe();
 
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-//    @GetMapping(value = "/pet", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    //    @GetMapping(value = "/pet", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @GetMapping(value = "/pet", produces = MediaType.APPLICATION_NDJSON_VALUE)
     public Flux<PetDto> getPets() {
-        return petRepository.findAll()
-                .map(PetMapper::mapToPetDto);
+        return petService.findAll();
     }
 }
