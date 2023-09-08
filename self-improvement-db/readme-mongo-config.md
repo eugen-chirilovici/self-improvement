@@ -1,13 +1,15 @@
-enter the docker
+### Follow the guide
+
+enter the mongo-db container
 
 ```shell
-docker exec -it docker_id bash
+docker exec -it 'docker_id' bash
 ```
 
 log in mongo shell (useful link: https://www.mongodb.com/docs/manual/introduction/)
 
 ```
-mongosh admin -u root -p 'secret' (same u & p as in compose.yaml spec)
+mongosh admin -u root -p 'secret' (same u & p as in resource-compose.yaml spec)
 ```
 
 create user and attach it to self-db, which is used by liquibase config
@@ -25,6 +27,8 @@ self_db.createUser({
     ]
 });
 ```
+
+run the migration 
 
 ```shell
 mvn liquibase:update

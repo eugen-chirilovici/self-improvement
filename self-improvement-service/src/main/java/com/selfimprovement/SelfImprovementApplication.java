@@ -10,5 +10,4 @@ public class SelfImprovementApplication {
     public static void main(String[] args) {
         SpringApplication.run(SelfImprovementApplication.class, args);
     }
-
 }
