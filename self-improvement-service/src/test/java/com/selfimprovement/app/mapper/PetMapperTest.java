@@ -1,4 +1,4 @@
-package com.selfimprovement.app.service.mapper;
+package com.selfimprovement.app.mapper;
 
 import com.github.javafaker.Faker;
 import com.selfimprovement.app.conf.annotation.MapperTestDefinition;

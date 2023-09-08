@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import com.selfimprovement.app.conf.annotation.MockTestDefinition;
 import com.selfimprovement.app.dto.PetDto;
 import com.selfimprovement.app.repository.PetRepository;
-import com.selfimprovement.app.service.mapper.PetMapper;
+import com.selfimprovement.app.mapper.PetMapper;
 import com.selfimprovement.model.PetEntity;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

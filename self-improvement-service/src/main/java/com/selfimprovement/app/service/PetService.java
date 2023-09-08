@@ -1,6 +1,6 @@
 package com.selfimprovement.app.service;
 
-import com.selfimprovement.app.service.mapper.PetMapper;
+import com.selfimprovement.app.mapper.PetMapper;
 import com.selfimprovement.app.dto.PetDto;
 import com.selfimprovement.app.repository.PetRepository;
 import com.selfimprovement.model.PetEntity;

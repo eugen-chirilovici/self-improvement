@@ -1,4 +1,4 @@
-package com.selfimprovement.app.service.mapper;
+package com.selfimprovement.app.mapper;
 
 import com.selfimprovement.app.config.MapStructConfig;
 import com.selfimprovement.app.dto.PetDto;

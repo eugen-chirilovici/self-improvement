@@ -2,14 +2,11 @@ package com.selfimprovement.app.controller;
 
 import com.selfimprovement.app.conf.TestControllerMocks;
 import com.selfimprovement.app.dto.PetDto;
-import com.selfimprovement.app.repository.PetRepository;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 
-public class AppBaseControllerTest extends TestControllerMocks {
-
-    @MockBean
-    PetRepository petRepository;
+@Import(AppController.class)
+class AppBaseControllerTest extends TestControllerMocks {
 
     @Test
     void check_the_endpoint() {
