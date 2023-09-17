@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/*
-useful info:
-    1. https://nurkiewicz.com/2021/08/json-streaming-in-webflux.html
- */
+
 @RestController
 @RequiredArgsConstructor
 public class AppController {

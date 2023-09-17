@@ -7,9 +7,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.ReportingPolicy;
 
-/*
-    useful link: https://reflectoring.io/java-mapping-with-mapstruct/
- */
+
 @MapperConfig(
         componentModel = MappingConstants.ComponentModel.SPRING,
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,

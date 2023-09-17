@@ -17,12 +17,14 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>self-improvement-service</module>
         <module>self-improvement-db</module>
+        <module>self-improvement-domain</module>
+        <module>self-improvement-service</module>
     </modules>
 
     <properties>
         <java.version>17</java.version>
+        <base.package>com.selfimprovement</base.package>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <liquibase-maven-plugin.version>4.18.0</liquibase-maven-plugin.version>
         <liquibase-maven-driver.version>4.9.0</liquibase-maven-driver.version>
@@ -33,6 +35,10 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <docker.wait.http.url>http://localhost:8080/actuator/health/ping</docker.wait.http.url>
         <docker.wait.time>90000</docker.wait.time>
+        <openapi-generator.version>6.6.0</openapi-generator.version>
+        <swagger.version>2.2.15</swagger.version>
+        <jackson-databind-nullable.version>0.2.4</jackson-databind-nullable.version>
+        <javafaker.version>1.0.2</javafaker.version>
     </properties>
 
     <dependencies>
@@ -64,12 +70,41 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-docker-compose</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-docker-compose</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--            <optional>true</optional>-->
+        <!--        </dependency>-->
+
+        <!--for openapi-->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${jackson-databind-nullable.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -77,7 +112,7 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
 
-        <!--for test only-->
+        <!--for testing only-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -121,7 +156,7 @@
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
+            <version>${javafaker.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -275,6 +310,65 @@
                             </path>
                         </annotationProcessorPaths>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>${openapi-generator.version}</version>
+                    <executions>
+                        <execution>
+                            <id>generate-code</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <!-- Spring generator config -->
+                                <generatorName>spring</generatorName>
+                                <library>spring-boot</library>
+                                <!-- Reference to the productstore spec -->
+                                <inputSpec>${project.basedir}/src/main/resources/openapi/product-store.yml</inputSpec>
+                                <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+                                <!-- Enable API generation -->
+                                <generateApis>true</generateApis>
+                                <!-- Enable API documentation generation -->
+                                <generateApiDocumentation>true</generateApiDocumentation>
+                                <!-- Do not generate tests -->
+                                <generateApiTests>false</generateApiTests>
+                                <generateModelTests>false</generateModelTests>
+                                <!-- Generate models -->
+                                <generateModels>true</generateModels>
+                                <generateModelDocumentation>false</generateModelDocumentation>
+                                <generateSupportingFiles>true</generateSupportingFiles>
+                                <!-- Generation output will be in target/generated-sources -->
+                                <output>${project.build.directory}/generated-sources</output>
+                                <!-- Model java package name -->
+                                <modelPackage>${base.package}.app.server.openapi.model</modelPackage>
+                                <!-- API java package name -->
+                                <apiPackage>${base.package}.app.server.openapi.api</apiPackage>
+                                <configOptions>
+                                    <reactive>true</reactive>
+                                    <sourceFolder>main/java</sourceFolder>
+                                    <!-- Use modern java8 date/time api -->
+                                    <dateLibrary>java8</dateLibrary>
+                                    <java8>true</java8>
+                                    <oas3>true</oas3>
+                                    <useSpringController>true</useSpringController>
+                                    <useSpringBoot3>true</useSpringBoot3>
+                                    <useSpringfox>false</useSpringfox>
+                                    <!-- Enable bean validation using javax validation and hibernate validator  -->
+                                    <useBeanValidation>true</useBeanValidation>
+                                    <performBeanValidation>true</performBeanValidation>
+                                    <interfaceOnly>false</interfaceOnly>
+                                    <!-- Use delegate pattern to separate implementation from API definition  -->
+                                    <delegatePattern>true</delegatePattern>
+                                    <useOptional>false</useOptional>
+                                    <!-- Place required parameters first in models  -->
+                                    <sortModelPropertiesByRequiredFlag>true</sortModelPropertiesByRequiredFlag>
+                                    <sortParamsByRequiredFlag>true</sortParamsByRequiredFlag>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

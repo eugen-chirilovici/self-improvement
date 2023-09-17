@@ -6,7 +6,7 @@ enter the mongo-db container
 docker exec -it 'docker_id' bash
 ```
 
-log in mongo shell (useful link: https://www.mongodb.com/docs/manual/introduction/)
+log in mongo shell
 
 ```
 mongosh admin -u root -p 'secret' (same u & p as in resource-compose.yaml spec)
@@ -33,3 +33,7 @@ run the migration
 ```shell
 mvn liquibase:update
 ```
+
+### Useful information
+* [Introduction to MongoDB](https://www.mongodb.com/docs/manual/introduction/)
+* [How to Create a Postgres Database in Docker](https://1kevinson.com/how-to-create-a-postgres-database-in-docker/)
