@@ -1,5 +1,6 @@
 package com.selfimprovement.app.conf;
 
+import com.github.javafaker.Faker;
 import com.selfimprovement.app.conf.annotation.RestControllerTestDefinition;
 import com.selfimprovement.app.mapper.PetMapper;
 import com.selfimprovement.app.repository.PetRepository;
@@ -11,6 +12,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 @RestControllerTestDefinition
 public abstract class TestControllerMocks {
+    protected final Faker faker = Faker.instance();
 
     @Autowired
     public WebTestClient webTestClient;

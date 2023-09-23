@@ -1,7 +1,7 @@
 package com.selfimprovement.app.service;
 
-import com.selfimprovement.app.mapper.PetMapper;
 import com.selfimprovement.app.dto.PetDto;
+import com.selfimprovement.app.mapper.PetMapper;
 import com.selfimprovement.app.repository.PetRepository;
 import com.selfimprovement.model.PetEntity;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +15,10 @@ public class PetService {
     private final PetRepository petRepository;
     private final PetMapper petMapper;
 
-    public Mono<PetEntity> save(PetEntity petEntity) {
-        return petRepository.save(petEntity);
+    public Mono<PetEntity> save(PetDto petDto) {
+        return Mono.just(petDto)
+                .map(petMapper::mapToPetEntity)
+                .flatMap(petRepository::save);
     }
 
     public Flux<PetDto> findAll() {

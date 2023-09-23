@@ -326,7 +326,7 @@
                                 <generatorName>spring</generatorName>
                                 <library>spring-boot</library>
                                 <!-- Reference to the productstore spec -->
-                                <inputSpec>${project.basedir}/src/main/resources/openapi/product-store.yml</inputSpec>
+                                <inputSpec>${project.basedir}/src/main/resources/openapi/pet.yml</inputSpec>
                                 <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
                                 <!-- Enable API generation -->
                                 <generateApis>true</generateApis>
@@ -358,7 +358,7 @@
                                     <!-- Enable bean validation using javax validation and hibernate validator  -->
                                     <useBeanValidation>true</useBeanValidation>
                                     <performBeanValidation>true</performBeanValidation>
-                                    <interfaceOnly>false</interfaceOnly>
+                                    <interfaceOnly>true</interfaceOnly>
                                     <!-- Use delegate pattern to separate implementation from API definition  -->
                                     <delegatePattern>true</delegatePattern>
                                     <useOptional>false</useOptional>
