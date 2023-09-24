@@ -29,6 +29,7 @@ mvn -N wrapper:wrapper -Dmaven=3.9.3
 ```
 
 ### Useful information
+* [OpenAPI Guide](https://swagger.io/docs/specification/about/)
 * [Spring Boot: Client - and server code generation using OpenAPI 3 Specs](https://blog.palo-it.com/en/spring-boot-client-and-server-code-generation-using-openapi-3-specs)
 * [Generate Server Code Using OpenAPI Generator](https://mydeveloperplanet.com/2022/02/08/generate-server-code-using-openapi-generator/)
 * [API-First with Spring WebFlux and OpenAPI Generator](https://boottechnologies-ci.medium.com/api-first-with-spring-webflux-and-openapi-generator-38b7804c4ed4)

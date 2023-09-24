@@ -21,8 +21,8 @@ public interface PetMapper {
     @Mapping(target = "name", source = "name")
     PetEntity mapToPetEntity(PetDto petDto);
 
-    com.selfimprovement.app.server.openapi.model.PetDto mapPetDtoToPetDtoResponse(PetDto petDto);
+    com.selfimprovement.app.server.openapi.model.Pet mapPetDtoToPetDtoResponse(PetDto petDto);
 
     @InheritInverseConfiguration
-    PetDto mapPetDtoRequestToPetDto(com.selfimprovement.app.server.openapi.model.PetDto petDto);
+    PetDto mapPetDtoRequestToPetDto(com.selfimprovement.app.server.openapi.model.Pet petDto);
 }
