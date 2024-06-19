@@ -1,4 +1,9 @@
+server:
+  port: 8080
+
 spring:
+  main:
+    web-application-type: reactive
   data:
     mongodb:
       maxIdleTimeMin: ${MONGO_MAX_IDLE_TIME_MIN:15}
@@ -13,3 +18,28 @@ spring:
     port: 5672
     username: myuser
     password: secret
+
+api:
+  common:
+    version: 1.0.0
+    title: Sample API
+    description: Description of the API...
+    termsOfServiceUrl: http://localhost:8080
+    license: License
+    licenseUrl: http://localhost:8080
+    contact:
+      name: Contact
+      url: http://localhost:8080
+      email: me@mail.com
+
+springdoc:
+  use-management-port: true
+  show-actuator: true
+
+management:
+  server:
+    port: 9090
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, openapi, swagger-ui

@@ -1,4 +1,5 @@
 version: '3.9'
+
 services:
   mongo-db:
     container_name: mongo-db
@@ -11,22 +12,22 @@ services:
     ports:
       - '27017:27017'
 
-  #  mongo-express:
-  #    container_name: mongo-express
-  #    image: mongo-express:latest
-  #    restart: unless-stopped
-  #    environment:
-  #      ME_CONFIG_MONGODB_SERVER: mongo-db
-  #      ME_CONFIG_MONGODB_PORT: 27017
-  #      ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
-  #      ME_CONFIG_MONGODB_AUTH_USERNAME: root
-  #      ME_CONFIG_MONGODB_AUTH_PASSWORD: secret
-  #      ME_CONFIG_BASICAUTH_USERNAME: admin
-  #      ME_CONFIG_BASICAUTH_PASSWORD: secret
-  #    depends_on:
-  #      - mongo-db
-  #    ports:
-  #      - '8888:8081'
+#  mongo-express:
+#    container_name: mongo-express
+#    image: mongo-express:latest
+#    restart: unless-stopped
+#    environment:
+#      ME_CONFIG_MONGODB_SERVER: mongo-db
+#      ME_CONFIG_MONGODB_PORT: 27017
+#      ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
+#      ME_CONFIG_MONGODB_AUTH_USERNAME: root
+#      ME_CONFIG_MONGODB_AUTH_PASSWORD: secret
+#      ME_CONFIG_BASICAUTH_USERNAME: admin
+#      ME_CONFIG_BASICAUTH_PASSWORD: secret
+#    depends_on:
+#      - mongo-db
+#    ports:
+#      - '8888:8888'
 
   rabbitmq:
     container_name: rabbitmq

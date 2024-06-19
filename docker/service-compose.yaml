@@ -1,8 +1,12 @@
 version: '3.9'
+
 services:
   self-improvement-service:
     container_name: self-improvement-service
+#    for an instant build and run use 'build' key word, but for using this is need mvn clean install first
+#    build: ../self-improvement-service
     image: 'self-improvement-app-image:latest'
     restart: unless-stopped
     ports:
       - '8080:8080'
+      - '9090:9090'

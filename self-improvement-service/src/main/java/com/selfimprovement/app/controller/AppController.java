@@ -27,7 +27,8 @@ public class AppController implements PetApi {
         return Mono.from(petService.findAll().buffer())
                 .map(initFlowMapper::mapToData)
                 .map(initFlowMapper::mapToInitFlowResponse)
-                .map(ResponseEntity::ok);
+                .map(ResponseEntity::ok)
+                .log("Exit get pet endpoint");
     }
 
     @Override
@@ -35,6 +36,7 @@ public class AppController implements PetApi {
         return petDto.map(petMapper::mapPetDtoRequestToPetDto)
                 .flatMap(petService::save)
                 .map(petMapper::mapPetDtoToPetDtoResponse)
-                .map(body -> ResponseEntity.status(HttpStatus.CREATED).body(body.getName()));
+                .map(body -> ResponseEntity.status(HttpStatus.CREATED).body(body.getName()))
+                .log("Exit post pet endpoint");
     }
 }

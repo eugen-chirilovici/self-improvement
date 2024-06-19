@@ -11,9 +11,10 @@ cd ./docker/
 docker-compose -f resource-compose.yaml up
 ```
 
-Build the service image
+Build the latest service image
 ```shell
 cd ./self-improvement-service/
+mvn clean install
 docker build -t self-improvement-app-image .
 ```
 
@@ -28,8 +29,15 @@ Maven wrapper plugin config:
 mvn -N wrapper:wrapper -Dmaven=3.9.3
 ```
 
-### Useful information
+Swagger [link](http://localhost:9090/actuator/webjars/swagger-ui/index.html)
+
+OpenApi spec [link](http://localhost:9090/actuator/openapi/springdocDefault)
+
+## Useful information
 * [OpenAPI Guide](https://swagger.io/docs/specification/about/)
+* [springdoc-openapi Actuator support](https://springdoc.org/v1/#actuator-support)
+* [Swagger-Open API to Spring Boot 3 Application(Web Flux)](https://pranavkhodanpur.medium.com/swagger-open-api-to-spring-boot-3-application-web-flux-2e99bb112151)
+* [Monitoring and Management over HTTP](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/html/production-ready-monitoring.html)
 * [Spring Boot: Client - and server code generation using OpenAPI 3 Specs](https://blog.palo-it.com/en/spring-boot-client-and-server-code-generation-using-openapi-3-specs)
 * [Generate Server Code Using OpenAPI Generator](https://mydeveloperplanet.com/2022/02/08/generate-server-code-using-openapi-generator/)
 * [API-First with Spring WebFlux and OpenAPI Generator](https://boottechnologies-ci.medium.com/api-first-with-spring-webflux-and-openapi-generator-38b7804c4ed4)
