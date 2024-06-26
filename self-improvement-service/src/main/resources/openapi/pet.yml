@@ -6,9 +6,9 @@ info:
 servers:
   - url: "https://self_improvement"
 paths:
-  /pet:
+  /pets:
     get:
-      summary: "GET pet"
+      summary: "GET pets"
       operationId: "getPets"
       responses:
         "200":
@@ -31,11 +31,10 @@ paths:
         "200":
           description: "OK"
           content:
-            '*/*':
+            application/json;charset=UTF-8:
               schema:
-                type: "string"
-                enum:
-                  - "CREATED"
+                $ref: "#/components/schemas/InitFlowResponse"
+
 components:
   schemas:
     InitFlowResponse:
@@ -48,9 +47,11 @@ components:
     Data:
       type: "object"
       properties:
-        pet:
+        pets:
           items:
             $ref: "#/components/schemas/Pet"
+        pet:
+          $ref: "#/components/schemas/Pet"
     ErrorData:
       type: "object"
     Pet:

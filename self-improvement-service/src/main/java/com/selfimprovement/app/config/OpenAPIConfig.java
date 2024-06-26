@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition
-public class SwaggerConfig {
+public class OpenAPIConfig {
 
     @Value("${api.common.version}")
     String apiVersion;
@@ -41,5 +41,4 @@ public class SwaggerConfig {
                         .license(new License().name(apiLicense).url(apiLicenseUrl))
                 );
     }
-
 }

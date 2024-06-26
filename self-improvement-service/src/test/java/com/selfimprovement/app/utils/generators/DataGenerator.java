@@ -23,14 +23,14 @@ public class DataGenerator {
         return PetDto.builder().name(faker.name().name());
     }
 
-    public static Pet buildPetDtoResponse(Faker faker, @Nullable String name) {
+    public static Pet buildPet(Faker faker, @Nullable String name) {
         return new Pet().name(
                 Optional.ofNullable(name).orElse(faker.name().name()));
     }
 
     public static InitFlowResponse buildInitFlowResponse(Faker faker, @Nullable String name) {
         return new InitFlowResponse().data(
-                new Data().pet(
-                        List.of(buildPetDtoResponse(faker, name))));
+                new Data().pets(
+                        List.of(buildPet(faker, name))));
     }
 }

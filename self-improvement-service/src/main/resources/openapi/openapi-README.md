@@ -1,5 +1,5 @@
 
-1) Go to http://localhost:8080/v1/api-docs and copy the json response 
+1) Go to http://localhost:9090/actuator/openapi/springdocDefault and copy the json response 
 
 2) Go to https://editor.swagger.io/
 
