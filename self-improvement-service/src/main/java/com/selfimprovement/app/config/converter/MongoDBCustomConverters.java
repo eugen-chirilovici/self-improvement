@@ -1,15 +1,19 @@
 package com.selfimprovement.app.config.converter;
 
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.UtilityClass;
+import org.bson.types.Binary;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.NonNull;
+
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.lang.NonNull;
+import java.util.UUID;
 
 /**
  * Custom Mongo DB Service {@link Converter}s, that will enrich existing collection with additional items.
@@ -29,9 +33,11 @@ public class MongoDBCustomConverters {
      */
     public static List<Converter<? extends Serializable, ? extends Serializable>> getMongoDbCustomConverters() {
         return List.of(
-            DateToOffsetDateTimeConverter.of(),
-            OffsetDateTimeToDateConverter.of(),
-            LocalDateToStringConverter.of()
+                DateToOffsetDateTimeConverter.of(),
+                OffsetDateTimeToDateConverter.of(),
+                LocalDateToStringConverter.of(),
+                BinaryToUuidConverter.of(),
+                UuidToBinaryConverter.of()
         );
     }
 
@@ -68,6 +74,28 @@ public class MongoDBCustomConverters {
         @Override
         public Date convert(@NonNull OffsetDateTime source) {
             return Date.from(source.withOffsetSameInstant(DEFAULT_TIME_ZONE).toInstant());
+        }
+    }
+
+    @RequiredArgsConstructor(staticName = "of")
+    public static class BinaryToUuidConverter implements Converter<Binary, UUID> {
+        @Override
+        public UUID convert(@NonNull Binary binary) {
+            ByteBuffer byteBuffer = ByteBuffer.wrap(binary.getData());
+            long high = byteBuffer.getLong();
+            long low = byteBuffer.getLong();
+            return new UUID(high, low);
+        }
+    }
+
+    @RequiredArgsConstructor(staticName = "of")
+    public static class UuidToBinaryConverter implements Converter<UUID, Binary> {
+        @Override
+        public Binary convert(@NonNull UUID uuid) {
+            ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
+            bb.putLong(uuid.getMostSignificantBits());
+            bb.putLong(uuid.getLeastSignificantBits());
+            return new Binary(bb.array());
         }
     }
 }

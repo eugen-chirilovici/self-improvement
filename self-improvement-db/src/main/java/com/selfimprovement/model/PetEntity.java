@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,6 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @SuperBuilder(toBuilder = true)
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Document(collection = PetEntity.COLLECTION_NAME)
 @AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 public class PetEntity extends UuidIdentifiedEntity {

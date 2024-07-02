@@ -63,7 +63,8 @@ public class MongoConfig {
                 .applyToConnectionPoolSettings((ConnectionPoolSettings.Builder builder) -> builder
                         .maxSize(maxSize)
                         .minSize(minSize)
-                        .maxConnectionIdleTime(maxIdleTimeMin, TimeUnit.MINUTES))
+                        .maxConnectionIdleTime(maxIdleTimeMin, TimeUnit.MINUTES)
+                        .maxWaitTime(60, TimeUnit.SECONDS))
                 .uuidRepresentation(UuidRepresentation.STANDARD)
                 .credential(MongoCredential.createScramSha1Credential(username, database, password.toCharArray()))
                 .applyToClusterSettings(builder -> builder.hosts(List.of(new ServerAddress(host))))

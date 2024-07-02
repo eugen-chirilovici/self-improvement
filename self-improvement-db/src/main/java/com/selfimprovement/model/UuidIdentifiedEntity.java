@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 
 /**
  * Document base class used to define ID field.
@@ -32,4 +33,7 @@ public abstract class UuidIdentifiedEntity {
 
         this.id = id;
     }
+
+    @Version
+    private Integer version;
 }

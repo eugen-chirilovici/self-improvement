@@ -44,3 +44,7 @@ management:
     web:
       exposure:
         include: info, health, metrics, openapi, swagger-ui
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
