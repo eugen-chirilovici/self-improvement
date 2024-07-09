@@ -1,4 +1,4 @@
-package com.selfimprovement.app.dto;
+package com.selfimprovement.app.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

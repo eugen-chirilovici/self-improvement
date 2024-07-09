@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
-import static com.selfimprovement.app.utils.generators.DataGenerator.buildPetEntity;
+import static com.selfimprovement.app.utils.generators.PetsGenerator.buildPetEntity;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @MapperTestDefinition

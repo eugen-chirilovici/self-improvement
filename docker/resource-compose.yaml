@@ -30,12 +30,12 @@ services:
 #    ports:
 #      - '8888:8888'
 
-#  rabbitmq:
-#    container_name: rabbitmq
-#    image: 'rabbitmq:latest'
-#    restart: unless-stopped
-#    environment:
-#      - 'RABBITMQ_DEFAULT_PASS=secret'
-#      - 'RABBITMQ_DEFAULT_USER=myuser'
-#    ports:
-#      - '5672:5672'
+  rabbitmq:
+    container_name: rabbitmq
+    image: 'rabbitmq:latest'
+    restart: unless-stopped
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=secret'
+      - 'RABBITMQ_DEFAULT_USER=myuser'
+    ports:
+      - '5672:5672'

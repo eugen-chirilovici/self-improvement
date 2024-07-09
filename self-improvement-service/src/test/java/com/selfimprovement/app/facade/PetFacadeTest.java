@@ -1,9 +1,9 @@
 package com.selfimprovement.app.facade;
 
 import com.selfimprovement.app.conf.annotation.MockTestDefinition;
-import com.selfimprovement.app.dto.PetDto;
 import com.selfimprovement.app.mapper.DataMapper;
-import com.selfimprovement.app.server.openapi.model.Data;
+import com.selfimprovement.app.model.PetData;
+import com.selfimprovement.app.model.dto.PetDto;
 import com.selfimprovement.app.service.PetService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -32,7 +32,7 @@ public class PetFacadeTest {
     public void testFindAll() {
 
         when(petService.findAll()).thenReturn(Flux.just(mock(PetDto.class)));
-        when(dataMapper.mapToData(anyList())).thenReturn(mock(Data.class));
+        when(dataMapper.mapToPetData(anyList())).thenReturn(mock(PetData.class));
 
         StepVerifier
                 .create(petFacade.findAll())

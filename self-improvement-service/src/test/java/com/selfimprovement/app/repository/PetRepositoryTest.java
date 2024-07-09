@@ -9,7 +9,7 @@ import reactor.test.StepVerifier;
 
 import java.util.List;
 
-import static com.selfimprovement.app.utils.generators.DataGenerator.buildPetEntity;
+import static com.selfimprovement.app.utils.generators.PetsGenerator.buildPetEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log4j2

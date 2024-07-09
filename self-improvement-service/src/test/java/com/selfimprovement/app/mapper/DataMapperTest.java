@@ -2,15 +2,14 @@ package com.selfimprovement.app.mapper;
 
 import com.github.javafaker.Faker;
 import com.selfimprovement.app.conf.annotation.MapperTestDefinition;
-import com.selfimprovement.app.server.openapi.model.Data;
+import com.selfimprovement.app.model.PetData;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 
-import static com.selfimprovement.app.utils.generators.DataGenerator.buildPet;
-import static com.selfimprovement.app.utils.generators.DataGenerator.buildPetDto;
+import static com.selfimprovement.app.utils.generators.PetsGenerator.buildPetDto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @MapperTestDefinition
@@ -26,15 +25,13 @@ public class DataMapperTest {
 
     @Test
     void testMapToInitFlowResponse() {
-        var petDto = buildPetDto(faker).build();
+        var petDto = buildPetDto(faker, null).build();
 
-        var data = dataMapper.mapToData(List.of(petDto));
-
-        var pet = buildPet(faker, petDto.getName());
+        var data = dataMapper.mapToPetData(List.of(petDto));
 
         assertThat(data).isNotNull()
-                .extracting(Data::getPets)
+                .extracting(PetData::getPets)
                 .isInstanceOf(List.class)
-                .asList().contains(pet);
+                .asList().contains(petDto);
     }
 }

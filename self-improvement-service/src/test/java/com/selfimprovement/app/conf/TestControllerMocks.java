@@ -3,7 +3,7 @@ package com.selfimprovement.app.conf;
 import com.github.javafaker.Faker;
 import com.selfimprovement.app.conf.annotation.RestControllerTestDefinition;
 import com.selfimprovement.app.facade.PetFacade;
-import com.selfimprovement.app.mapper.InitFlowMapper;
+import com.selfimprovement.app.mapper.InitPetFlowMapper;
 import com.selfimprovement.app.mapper.PetMapper;
 import com.selfimprovement.app.repository.PetRepository;
 import com.selfimprovement.app.service.PetService;
@@ -29,7 +29,7 @@ public abstract class TestControllerMocks {
     public PetService petService;
 
     @MockBean
-    public InitFlowMapper initFlowMapper;
+    public InitPetFlowMapper initPetFlowMapper;
 
     @MockBean
     PetRepository petRepository;

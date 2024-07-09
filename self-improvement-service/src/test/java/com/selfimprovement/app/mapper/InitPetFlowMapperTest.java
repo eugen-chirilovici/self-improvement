@@ -10,12 +10,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @MapperTestDefinition
 @ContextConfiguration(
-        classes = InitFlowMapperImpl.class
+        classes = InitPetFlowMapperImpl.class
 )
-public class InitFlowMapperTest {
+public class InitPetFlowMapperTest {
 
     @Autowired
-    InitFlowMapper initFlowMapper;
+    InitPetFlowMapper initPetFlowMapper;
 
     private final Faker faker = Faker.instance();
 
