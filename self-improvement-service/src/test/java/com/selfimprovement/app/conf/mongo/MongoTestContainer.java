@@ -27,7 +27,7 @@ public interface MongoTestContainer {
     String MONGO_URI_TEMPLATE = "mongodb://%s:%s@localhost:%d/%s?authSource=admin";
 
     @Container
-    @ServiceConnection
+//    @ServiceConnection
     GenericContainer<?> mongoDBContainer =
             new GenericContainer<>(DockerImageName.parse(MONGO_DOCKER_NAME_WITH_VERSION))
                     .withExposedPorts(PORT)
